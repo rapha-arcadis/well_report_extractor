@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual env
+venv/
+.venv/
+*.venv/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Env / secrets
+.env
+.env.*
+*.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Arquivos
+*.zip
+
+# Outros
+/Docs
+/Output

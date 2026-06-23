@@ -1,0 +1,11 @@
+﻿# Pacote: Data
+pandas
+numpy
+pdfplumber
+camelot-py
+
+# Pacote: DEV
+black
+jupyter
+ipykernel
+
