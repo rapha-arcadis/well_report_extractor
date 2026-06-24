@@ -12,6 +12,7 @@ class ExtractData:
     """
     Classe responsável por extrair dados estruturados de relatórios de poços em PDF da WALM
     """
+
     def __init__(self, pdf_path: str, json_path: str) -> None:
         """
         Inicializa a classe com os caminhos dos arquivos de entrada e o motor de OCR.
