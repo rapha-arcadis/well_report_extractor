@@ -9,3 +9,6 @@ black
 jupyter
 ipykernel
 
+easyocr
+PyMuPDF
+pillow
