@@ -10,7 +10,7 @@ class ReportV1Model:
     def __init__(self):
         pass
 
-    def get_monitoring_well_data(self, image_bytes: bytes) -> List[Dict]:
+    def get_monitoring_well_data(self, image_bytes: bytes) -> Dict:
         # Read prompt from file
         prompt_path = r"C:\Users\matheus.carneiro\Projetos\well-report-extractor\resources\prompts\perfil_v1\perfil_dados\extrai_dados_perfil.txt"
 
