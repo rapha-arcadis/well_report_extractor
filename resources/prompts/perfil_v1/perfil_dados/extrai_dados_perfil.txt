@@ -1,0 +1,24 @@
+Leia essa imagem descrevendo o perfil construtivo de um poço de sondagem e gere uma resposta descrevendo
+o conteúdo de cada camada. Uma descrição dos elementos presentes nele é:
+
+    * Os triangulos no lado esquerdo são os níveis de água. Use o triangulo mais perto do topo para o valor do Nivel_agua_poco
+    * Os items imediatamente abaixo do VOC podem ser ignorados. Essa informação não é relevante para a extração
+    * As colunas coloridas são os segmentos do poço de instalação. O comprimento do segmento é dito pela coluna de profundidade a esquerda do poço. O texto no lado direito dizendo o nome do dado segmento.
+    * O valor a direta da palavra 'Profundidade' abaixo do poço descreve a profundidade total do poço. A letra após o número também serve para definir a unidade de medida usada para a profundidade
+    * As linhas de texto na parte inferior da imagem são observações sobre o poço, com a profundidade dessas observações descritas no começo de cada linha
+
+Seu objetivo é retornar duas coisas. A primeira é fazer um JSON e criar uma linha para cada segmento do poço, com cada linha contedo os seguintes dados sobre
+aquele segmento:
+
+    * Nivel_agua_poco
+    * Tipo_segmento
+    * Tipo_material
+    * Profundidade_inicial_instalacao
+    * Profundidade_final_instalacao
+    * Unidade_medida_instalacao
+
+A segunda coisa é um JSON simples contendo as observações da imagem com a profundidade(convertida em um float) como chave e a observação em si como o valor
+
+Os resultados vão também vir separados no formato de JSON. O primeiro item vai ser o resultado dos segmentos do poço, com o nome da chave sendo 'well_data'. O segundo item vai ser as observações, com o nome da chave sendo 'obs'
+
+Retornar apenas o JSON contendo esses dois items, nada mais
