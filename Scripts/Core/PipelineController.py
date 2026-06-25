@@ -66,6 +66,7 @@ class PipelineController:
 
         # Repassa o JSON em memória e a bounding box para o ExtractData
         extractor = ExtractData(pdf_path=self.pdf_path, json_data=json_dinamico)
-        df_final = extractor.extract_text_df(bloco_ignorado=best_box)
+        df_pdf = extractor.extract_text_df(bloco_ignorado=best_box)
+        df_final_completo = extractor.concat_json(df_pdf)
 
-        return df_final
+        return df_final_completo
