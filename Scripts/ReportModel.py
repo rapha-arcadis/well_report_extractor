@@ -17,7 +17,7 @@ class ReportV1Model:
         with open(prompt_path, "r") as f:
             prompt_str = f.read()
 
-        # Converte os bytes da imagem em Base64 para envio via API (ex: OpenAI)
+        # Converte os bytes da imagem em Base64 para envio via API
         base64_image = base64.b64encode(image_bytes).decode("utf-8")
 
         llm_result = OpenAILLM().chat_completion(
