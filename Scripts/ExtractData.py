@@ -13,12 +13,12 @@ class ExtractData:
     Classe responsável por extrair dados estruturados de relatórios de poços em PDF da WALM
     """
 
-    def __init__(self, pdf_path: str, json_path: str) -> None:
+    def __init__(self, pdf_path: str, json_data: str) -> None:
         """
         Inicializa a classe com os caminhos dos arquivos de entrada e o motor de OCR.
         """
         self.pdf_path = pdf_path
-        self.json_path = json_path
+        self.json_path = json_data
         self.reader = easyocr.Reader(["pt", "en"], gpu=False)
 
     def extract_text_df(self, bloco_ignorado: tuple = None) -> pd.DataFrame:
@@ -172,7 +172,7 @@ class ExtractData:
         Lê o JSON e une com o Dataframe.
         """
         # Carrega os dados brutos das camadas a partir do arquivo JSON
-        df_json = pd.read_json(self.json_path)
+        df_json = pd.read_json(self.json_data)
 
         # Para cada coluna existente no PDF, cria uma correspondente no JSON
         # replicando o valor do índice 0 para todas as linhas da tabela
