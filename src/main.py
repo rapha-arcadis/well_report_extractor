@@ -1,19 +1,56 @@
 import json
+import os
 import pandas as pd
 from typing import Dict, List
 
 from src.llm import OpenAILLM
 
 
-class ReportV1Model:
+# Defining the root directory of the project
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+class ReportV2Model:
     def __init__(self):
-        self.img_path = r"C:\Users\matheus.carneiro\Projetos\well-report-extractor\well.png"
+        self.img_path = os.path.join(ROOT_DIR, r"well_v2.png")
 
         self.get_monitoring_well_data()
 
     def get_monitoring_well_data(self) -> List[Dict]:
         # Read prompt from file
-        prompt_path = r'C:\Users\matheus.carneiro\Projetos\well-report-extractor\resources\prompts\perfil_v1\perfil_dados\extrai_dados_perfil.txt'
+        prompt_path = os.path.join(ROOT_DIR, r'resources\prompts\perfil_v2\perfil_dados\extrai_dados_perfil.txt')
+
+        with open(prompt_path, 'r') as f:
+            prompt_str = f.read()
+
+        llm_result = OpenAILLM().chat_completion(
+            messages=[{"role": "user", "content": prompt_str}],
+            image_path=self.img_path
+        )
+
+        # Deleting result filler
+        llm_result = llm_result.replace('```json\n', '')
+        llm_result = llm_result.replace('\n```', '')
+
+        # Formatting llm_result
+        llm_result = json.loads(llm_result)
+
+        well_df = pd.DataFrame(llm_result['well_data'])
+
+        well_records = well_df.to_dict('records')
+
+        return well_records
+
+
+class ReportV1Model:
+    def __init__(self):
+        self.img_path = os.path.join(ROOT_DIR, r"well_v1.png")
+
+        self.get_monitoring_well_data()
+
+    def get_monitoring_well_data(self) -> List[Dict]:
+        # Read prompt from file
+        prompt_path = os.path.join(ROOT_DIR, r'resources\prompts\perfil_v2\perfil_dados\extrai_dados_perfil.txt')
 
         with open(prompt_path, 'r') as f:
             prompt_str = f.read()
@@ -46,4 +83,4 @@ class ReportV1Model:
 
 
 if __name__ == '__main__':
-    ReportV1Model()
+    ReportV2Model()
